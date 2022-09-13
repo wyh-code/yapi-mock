@@ -1,0 +1,24 @@
+{
+  "name": "mockProxy",
+	"version": "1.0.0",
+	"manifest_version": 3,
+	"description": "mock",
+	"icons": {
+    "16": "logo.png",
+    "48": "logo.png",
+    "128": "logo.png"
+  },
+	"content_scripts": [
+		{
+			"matches": ["http://11.162.92.90:8080/*"],
+			"js": ["content.js"],
+			"run_at": "document_end"
+		}
+	],
+	"web_accessible_resources": [
+		{
+			"resources": ["inject.js"],
+			"matches": ["<all_urls>"]
+		}
+	]
+}
