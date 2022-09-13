@@ -88,7 +88,7 @@ function arrayToTree(list) {
 }
 
 function initData(item, index) {
-  console.log(index, '====index==')
+  // console.log(index, '====index==')
   let data;
   switch (item.type) {
     case 'string':
@@ -131,6 +131,7 @@ function packObj(list, index){
         obj[item.key] = list;
       }
     }else{
+      // console.log(index, 'index===', item)
       obj[item.key] = initData(item, index)
     }
   })
@@ -141,12 +142,13 @@ function treeToData(tree, res = {}) {
   for (let key in tree) {
     if (/object|[]/.test(tree[key].type)) {
       if(tree[key].type === 'object'){
-        console.log(tree[key])
+        // console.log(tree[key])
         res[key] = packObj(tree[key].children)
       }else{
         const list = [];
         for(let i = 0; i < len; i++){
-          list.push(packObj(tree[key].children))
+          // console.log(tree[key].children, '==tree[key].children==')
+          list.push(packObj(tree[key].children, i))
         }
         res[key] = list;
       }
