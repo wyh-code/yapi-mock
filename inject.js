@@ -43,7 +43,7 @@ function getKeyList(trs) {
     const key = tds[0].innerText;
     const type = tds[1].innerText;
     const remark = tds[4].innerText;
-
+    // console.log(i, tr, key)
     // 层级递减
     if (currentLevel > level) {
       keyPath = keyPath.slice(0, keyPath.length - (currentLevel - level))
@@ -68,6 +68,7 @@ function arrayToTree(list) {
   const map = {};
   list.forEach(item => map[item.keyPath.join('-')] = item);
   let res = {};
+  console.log(list, 'list', list.length)
   list.forEach(item => {
     if (item.key) {
       if (item.keyPath.length === 1) {
@@ -83,7 +84,7 @@ function arrayToTree(list) {
       }
     }
   })
-
+  console.log(res, '==res==')
   return res;
 }
 
@@ -110,7 +111,7 @@ function initData(item, index) {
 function packObj(list, index){
   const obj = {};
   list.forEach(item => {
-    if (/object|[]/.test(item.type)){
+    if (/object|\[\]/.test(item.type)){
       if(item.type === 'object'){
         obj[item.key] = packObj(item.children, index)
       }else{
@@ -140,9 +141,9 @@ function packObj(list, index){
 
 function treeToData(tree, res = {}) {
   for (let key in tree) {
-    if (/object|[]/.test(tree[key].type)) {
+    if (/object|\[\]/.test(tree[key].type)) {
       if(tree[key].type === 'object'){
-        // console.log(tree[key])
+        console.log(tree[key])
         res[key] = packObj(tree[key].children)
       }else{
         const list = [];
