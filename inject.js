@@ -1,5 +1,5 @@
 // 数组默认填充15条
-const len = 15;
+// const len = 15;
 
 function renderCreateButton (){
   const button = document.createElement('div');
@@ -78,83 +78,83 @@ function arrayToTree(list) {
   return res;
 }
 
-function initData(item, index) {
-  let data;
-  switch (item.type) {
-    case 'string':
-      data = (item.remark || 'string');
-      data = index ? `${data}-${index}` : data;
-      data = data.slice(-5)
-      break;
-    case 'boolean':
-      // data = [true, false][parseInt(Math.random() * 10 % 2)];
-      data = true;
-      break;
-    case 'integer':
-      data = parseInt(Math.random() * 100);
-      break;
-    case 'number':
-      if(/(Date|date|Time|time)$/.test(item.key)){
-        data = +new Date;
-      }else{
-        data = parseInt(Math.random() * 100);
-      }
-      break;
-  }
-  return data;
-}
+// function initData(item, index) {
+//   let data;
+//   switch (item.type) {
+//     case 'string':
+//       data = (item.remark || 'string');
+//       data = index ? `${data}-${index}` : data;
+//       data = data.slice(-5)
+//       break;
+//     case 'boolean':
+//       // data = [true, false][parseInt(Math.random() * 10 % 2)];
+//       data = true;
+//       break;
+//     case 'integer':
+//       data = parseInt(Math.random() * 100);
+//       break;
+//     case 'number':
+//       if(/(Date|date|Time|time)$/.test(item.key)){
+//         data = +new Date;
+//       }else{
+//         data = parseInt(Math.random() * 100);
+//       }
+//       break;
+//   }
+//   return data;
+// }
 
-function packObj(list, index) {
-  const obj = {};
-  list?.forEach(item => {
-    if (/object|\[\]/.test(item.type)) {
-      if (item.type === 'object') {
-        obj[item.key] = packObj(item.children, index)
-      } else {
-        const tepType = item.type.split('[]').filter(it => it).map(it => it.trim())[0]
-        const list = [];
-        if (['string', 'boolean', 'integer', 'number'].includes(tepType)) {
-          for (let i = 0; i < len; i++) {
-            list.push(initData({ type: tepType, key: item.key }, i))
-          }
-        } else {
-          if (['object'].includes(tepType)) {
-            for (let i = 0; i < len; i++) {
-              const obj = packObj(item.children, i)
-              list.push(obj)
-            }
-          }
-        }
-        obj[item.key] = list.filter(it => it);
-      }
-    } else {
-      // console.log(index, 'index===', item)
-      obj[item.key] = initData(item, index)
-    }
-  })
-  return list && obj;
-}
+// function packObj(list, index) {
+//   const obj = {};
+//   list?.forEach(item => {
+//     if (/object|\[\]/.test(item.type)) {
+//       if (item.type === 'object') {
+//         obj[item.key] = packObj(item.children, index)
+//       } else {
+//         const tepType = item.type.split('[]').filter(it => it).map(it => it.trim())[0]
+//         const list = [];
+//         if (['string', 'boolean', 'integer', 'number'].includes(tepType)) {
+//           for (let i = 0; i < len; i++) {
+//             list.push(initData({ type: tepType, key: item.key }, i))
+//           }
+//         } else {
+//           if (['object'].includes(tepType)) {
+//             for (let i = 0; i < len; i++) {
+//               const obj = packObj(item.children, i)
+//               list.push(obj)
+//             }
+//           }
+//         }
+//         obj[item.key] = list.filter(it => it);
+//       }
+//     } else {
+//       // console.log(index, 'index===', item)
+//       obj[item.key] = initData(item, index)
+//     }
+//   })
+//   return list && obj;
+// }
 
-function treeToData(tree, res = {}) {
-  for (let key in tree) {
-    if (/object|\[\]/.test(tree[key].type)) {
-      if (tree[key].type === 'object') {
-        console.log(tree[key])
-        res[key] = packObj(tree[key].children)
-      } else {
-        const list = [];
-        for (let i = 0; i < len; i++) {
-          // console.log(tree[key].children, '==tree[key].children==')
-          list.push(packObj(tree[key].children, i))
-        }
-        res[key] = list;
-      }
-    } else {
-      res[key] = initData(tree[key])
-    }
-  }
-  return res;
-}
+// function treeToData(tree, res = {}) {
+//   for (let key in tree) {
+//     if (/object|\[\]/.test(tree[key].type)) {
+//       if (tree[key].type === 'object') {
+//         console.log(tree[key])
+//         res[key] = packObj(tree[key].children)
+//       } else {
+//         const list = [];
+//         for (let i = 0; i < len; i++) {
+//           // console.log(tree[key].children, '==tree[key].children==')
+//           list.push(packObj(tree[key].children, i))
+//         }
+//         res[key] = list;
+//       }
+//     } else {
+//       res[key] = initData(tree[key])
+//     }
+//   }
+//   return res;
+// }
 
 function copy(info) {
   // 创建元素用于复制
