@@ -141,7 +141,7 @@ function getMockCode (infoString){
     info.form.totalPage = info.form.totalPage || 'totalPages';
     info.form.total = info.form.total || 'totalCount';
 
-    const len = info.form.totalNum && !isNaN(+info.form.totalNum) ? + info.form.totalNum : 18;
+    const len = info.form.totalNum && !isNaN(+info.form.totalNum) ? +info.form.totalNum : 18;
     function initData(item, index) {
       let data;
       switch (item.type) {
