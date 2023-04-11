@@ -96,21 +96,21 @@ function addFormEvent() {
     render(true)
   }
   yApiPageNo.oninput = (e) => {
-    YAPI_FORM.pageNo = e.target.value;
+    YAPI_FORM.pageNo = e.target.value.trim();
     render();
   }
   yApiPageSize.oninput = (e) => {
-    YAPI_FORM.pageSize = e.target.value;
+    YAPI_FORM.pageSize = e.target.value.trim();
     render();
   }
   yApiTotal.oninput = (e) => {
-    YAPI_FORM.total = e.target.value;
+    YAPI_FORM.total = e.target.value.trim();
   }
   yApiTotalPage.oninput = (e) => {
-    YAPI_FORM.totalPage = e.target.value;
+    YAPI_FORM.totalPage = e.target.value.trim();
   }
   yApiTotalNum.oninput = (e) => {
-    YAPI_FORM.totalNum = e.target.value;
+    YAPI_FORM.totalNum = e.target.value.trim();
   }
 
   yApiSubmit.onclick = () => {
