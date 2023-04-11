@@ -10,14 +10,20 @@
   },
 	"content_scripts": [
 		{
-			"matches": [],
+			"matches": [
+				"http://yapi.alibaba-inc.com/*"
+			],
 			"js": ["content.js"],
 			"run_at": "document_end"
 		}
 	],
 	"web_accessible_resources": [
 		{
-			"resources": ["inject.js"],
+			"resources": [
+				"inject.js",
+				"form.js",
+				"inject.css"
+			],
 			"matches": ["<all_urls>"]
 		}
 	]
